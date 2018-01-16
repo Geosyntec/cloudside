@@ -345,8 +345,6 @@ def dataAvailabilityHeatmap(data, figsize=None):
 
 
 if __name__ == '__main__':
-
-
     data_1hr = pandas.read_csv(filepath, sep=sep, na_values=['unknown', 99999],
                                parse_dates=['DATE'], date_parser=date_parser)
 
