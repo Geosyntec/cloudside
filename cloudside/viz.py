@@ -253,7 +253,7 @@ def _plot_windrose(rose, ax=None, palette=None, show_calm=True, show_legend=True
     ax.yaxis.set_major_formatter(FuncFormatter(_pct_fmt))
 
     for n, (c1, c2) in enumerate(zip(rose.columns[:-1], rose.columns[1:])):
-        if n == 0:
+        if n == 0 and show_calm:
             # first column only
             ax.bar(dir_rads, rose[c1].values,
                    width=dir_width,
@@ -295,7 +295,7 @@ def windRose(dataframe, ax=None, speedcol='WindSpd', dircol='WindDir',
                              spd_units=spd_units, calmspeed=calmspeed,
                              bin_width=bin_width)
 
-    fig = _plot_windrose(rose, ax=ax, palette=palette, show_legend=show_legend, 
+    fig = _plot_windrose(rose, ax=ax, palette=palette, show_legend=show_legend,
                          show_calm=show_calm, **bar_opts)
     return fig, rose
 
