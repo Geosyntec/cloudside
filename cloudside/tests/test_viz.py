@@ -90,7 +90,9 @@ def rose_index():
 
 @pytest.mark.mpl_image_compare(**IMG_OPTS)
 def test_rain_clock(test_data):
-    fig = viz.rain_clock(test_data, raincol='Precip')
+    fig, ax1, ax2 = _make_polar_fig()
+    fig.set_size_inches(7, 3)
+    axes = viz.rain_clock(test_data, raincol='Precip', axes=[ax1, ax2])
     quiet_layout(fig)
     return fig
 
@@ -204,7 +206,7 @@ def test__compute_rose_short_record(short_data, rose_index):
 def test_hyetograph(test_data, frequencies):
     fig, axes = _make_ts_fig()
     for freq, ax in zip(frequencies, axes):
-        fig = viz.hyetograph(test_data, col='Precip', freq=freq, ax=ax)
+        _ = viz.hyetograph(test_data, col='Precip', freq=freq, ax=ax)
     quiet_layout(fig)
     return fig
 
@@ -213,7 +215,7 @@ def test_hyetograph(test_data, frequencies):
 def test_psychromograph(test_data, frequencies):
     fig, axes = _make_ts_fig()
     for freq, ax in zip(frequencies, axes):
-        fig = viz.psychromograph(test_data, col='AtmPress', freq=freq, ax=ax)
+        _ = viz.psychromograph(test_data, col='AtmPress', freq=freq, ax=ax)
     quiet_layout(fig)
     return fig
 
@@ -222,6 +224,6 @@ def test_psychromograph(test_data, frequencies):
 def test_temperature(test_data, frequencies):
     fig, axes = _make_ts_fig()
     for freq, ax in zip(frequencies, axes):
-        fig = viz.temperature(test_data, col='Temp', freq=freq, ax=ax)
+        _ = viz.temperature(test_data, col='Temp', freq=freq, ax=ax)
     quiet_layout(fig)
     return fig

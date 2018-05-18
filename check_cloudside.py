@@ -1,10 +1,10 @@
 import sys
 import matplotlib
+matplotlib.use('agg')
 from matplotlib import style
 
 import cloudside
 
-matplotlib.use('agg')
 style.use('classic')
 
 if '--strict' in sys.argv:

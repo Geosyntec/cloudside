@@ -1,18 +1,17 @@
-from matplotlib import figure
-from matplotlib import axes
+from matplotlib import pyplot
 
 import os
 
 
-def axes_object(ax):
+def axes_object(ax, polar=False):
     """ Checks if a value if an Axes. If None, a new one is created.
     Both the figure and axes are returned (in that order).
 
     """
     if ax is None:
-        fig = figure.Figure()
-        ax = fig.add_subplot(1, 1, 1)
-    elif isinstance(ax, axes.Axes):
+        fig, ax = pyplot.subplots(subplot_kw=dict(polar=polar))
+
+    elif isinstance(ax, pyplot.Axes):
         fig = ax.figure
     else:
         msg = "`ax` must be a matplotlib Axes instance or None"
